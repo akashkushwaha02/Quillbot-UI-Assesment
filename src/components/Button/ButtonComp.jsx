@@ -1,19 +1,12 @@
-import {
-  ButtonPlayMovie,
-  ButtonWatch,
-  Typography1,
-  Typography2,
-} from "../Container/App.styles";
+import { ButtonPlayMovie, Typography1 } from "../../styles/App.styles";
 
 const ButtonComp = (props) => {
-  const { label, filled } = props;
-
-  console.log(filled, "fillled props ");
+  const { label, filled, color, outlined } = props;
 
   return (
     <>
-      <ButtonPlayMovie filled={filled}>
-        <Typography1>{label}</Typography1>
+      <ButtonPlayMovie filled={filled} outlined={outlined}>
+        <Typography1 color={color}>{label}</Typography1>
       </ButtonPlayMovie>
     </>
   );

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import {
   GridCardContainer,
   Card,
@@ -10,7 +10,7 @@ import {
   Banner,
   MovieRow,
   MovieBannerContainer,
-} from "../Container/App.styles";
+} from "../../styles/App.styles";
 import ExtendedCardComp from "../ExtendedCard/ExtendedCardComp";
 import AddIconCard from "../../assets/svg/AddIconCard";
 import PlayButtonCard from "../../assets/svg/PlayButtonCard";
@@ -23,17 +23,13 @@ const MovieComp = ({ filterData }) => {
   const [parentIndexState, setParentIndexState] = useState();
 
   const windowSize = useWindowSize();
-
   let data;
-
   if (filterData) {
     data =
       windowSize.width > 480 ? slicing(filterData, 5) : slicing(filterData, 1);
   }
 
-  console.log(data, "data");
   const handleCardClick = (e, title, cardData, parentIndex, index) => {
-    console.log(parentIndex, index, "parentIndex");
     setExpandDetails(!expandDetails);
     setParentIndexState(parentIndex);
     setCardDataState(cardData);

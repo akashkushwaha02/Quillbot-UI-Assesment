@@ -11,15 +11,9 @@ import {
   ExpandedMovieYearSub2,
   ExpandedMovieDescr,
   ExpandedMovieButtonWrapper,
-  ButtonPlayMovie,
-  ButtonWatch,
-  Typography1,
-  Typography2,
-} from "../Container/App.styles";
+} from "../../styles/App.styles";
 
 const ExtendedCardComp = ({ data }) => {
-  console.log(data, "data inside extendedCard");
-
   const {
     Poster,
     Title,
@@ -31,6 +25,7 @@ const ExtendedCardComp = ({ data }) => {
     Plot,
     Images,
   } = data;
+
   return (
     <>
       <ExpandedMovieCardWrapper>
@@ -46,7 +41,7 @@ const ExtendedCardComp = ({ data }) => {
           <ExpandedMovieTitle>{Title}</ExpandedMovieTitle>
           <ExpandedMovieProgressBar>
             {" "}
-            progress bar {imdbRating}
+            IMDBRating :- {imdbRating}
           </ExpandedMovieProgressBar>
           <ExpandedMovieYear>
             <ExpandedMovieYearSubWrapper>
@@ -70,7 +65,12 @@ const ExtendedCardComp = ({ data }) => {
           <ExpandedMovieDescr>{Plot}</ExpandedMovieDescr>
           <ExpandedMovieButtonWrapper>
             <ButtonComp label={"Play Movie"} filled={true} />
-            <ButtonComp label={"Watch Trailer"} filled={false} />
+            <ButtonComp
+              label={"Watch Trailer"}
+              filled={false}
+              outlined={true}
+              color={"white"}
+            />
           </ExpandedMovieButtonWrapper>
         </ExpandedMovieContent>
       </ExpandedMovieCardWrapper>

@@ -12,8 +12,7 @@ export const SidePanel = styled.div`
 
   width: 275px;
   @media (max-width: 420px) {
-    display: none;
-    height: 100vh;
+    display: ${(props) => (props.closeMenu ? "block" : "none")};
     width: 100%;
   }
 `;
@@ -38,7 +37,7 @@ export const MainContentArea = styled.div`
   flex: 1;
   background-color: #273244;
   @media (max-width: 420px) {
-    display: block;
+    display: ${(props) => (props.extendNav ? "none" : "block")};
   }
 `;
 
@@ -54,13 +53,15 @@ export const Header = styled.div`
   @media (max-width: 420px) {
     margin-top: 20px;
     margin-bottom: 26px;
-    padding-left: 24px;
+    padding-left: 0;
+    padding-right: 20px;
   }
 `;
 
 export const SearchBarWrapper = styled.div`
   position: relative;
   display: flex;
+  align-items: center;
   @media (max-width: 420px) {
     margin-right: 9%;
   }
@@ -77,7 +78,7 @@ export const SearchBarCrossLogo = styled.div`
 
   z-index: 1;
   margin: 20px 20px 20px 530px;
-  @media (maz-width: 420px) {
+  @media (max-width: 420px) {
     margin: 20px 20px 20px 215px;
   }
 `;
@@ -94,7 +95,6 @@ export const SearchBarInput = styled.input`
 
   font-size: 21px;
   line-height: 44px;
-  /* identical to box height, or 210% */
 
   color: #ffffff;
 
@@ -115,8 +115,6 @@ export const SearchBarInput = styled.input`
 
     color: #ffffff;
 
-    font-family: "Open Sans";
-    font-style: normal;
     font-weight: 600;
   }
 `;
@@ -128,12 +126,10 @@ export const SearchBarInputMobile = styled.input`
 export const NoResultFound = styled.div`
   padding-left: 48px;
   padding-top: 39px;
-  font-family: "Open Sans";
-  font-style: normal;
+
   font-weight: 600;
   font-size: 21px;
   line-height: 44px;
-  /* identical to box height, or 210% */
 
   color: #ffffff;
 `;
@@ -165,6 +161,9 @@ export const GridCardContainer = styled.div`
   @media (max-width: 420px) {
     grid-template-columns: 1fr;
     row-gap: 0;
+    margin-bottom: 10px;
+    margin-left: 15px;
+    margin-right: 15px;
   }
 `;
 
@@ -342,7 +341,7 @@ export const CardImage = styled.img`
   border-radius: 6px;
   @media (max-width: 420px) {
     width: 100%;
-    height: 253px;
+    height: 360px;
     padding-right: 19px;
     border-radius: 6px;
   }
@@ -491,6 +490,7 @@ export const ButtonPlayMovie = styled.button`
   background: ${(props) => (props.filled ? "#00e0ff" : "#394b61")};
   border-radius: 5px;
   border: none;
+  border: ${(props) => (props.outlined ? "1px solid #00e0ff" : "")};
 `;
 
 export const ButtonWatch = styled.button`
@@ -509,24 +509,11 @@ export const Typography1 = styled.div`
   font-weight: 700;
   font-size: 16px;
   line-height: 26px;
-  /* or 162% */
 
   text-align: center;
 
   color: #000000;
-`;
-
-export const Typography2 = styled.div`
-  font-family: "Open Sans";
-  font-style: normal;
-  font-weight: 700;
-  font-size: 16px;
-  line-height: 26px;
-  /* or 162% */
-
-  text-align: center;
-
-  color: #00e0ff;
+  color: ${(props) => (props.color == "white" ? "#00e0ff" : "#000000")};
 `;
 
 export const SearchDiv = styled.div`
@@ -535,39 +522,4 @@ export const SearchDiv = styled.div`
   top: 45px;
   width: 50px;
   height: 5px;
-`;
-
-export const Seacrchinput = styled.input`
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  -webkit-transform: translate(-50%, -50%);
-  width: 20px;
-  height: 20px;
-  border-style: none;
-  border-radius: 20px;
-  padding: 10px;
-  background-color: #081925;
-  outline: none;
-  transition-duration: 500ms;
-  cursor: pointer;
-  background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACgAAAAoCAYAAACM/rhtAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAAadEVYdFNvZnR3YXJlAFBhaW50Lk5FVCB2My41LjExR/NCNwAAAWpJREFUWEfNljFOxDAQRbehoKDnIjTcgYtwAHpOwhE4BA3Vig6Je9ABYZ60kZbVc5xkifRHelrleRzP2rGT3TAM0ahMQmUSKpNQmYTKJFQmoTIJlUmonMFlcV88FW/F5+GXazzt1m8xKjvcFh/FVNBOnvVfhMoJHorvgtgXzNZNcXX45RpPkEe+3Wc2KhswIwz6VTwWF4Xl4Wknj/yzZlKlwDM1LiuDW84p5BH0W/1MqhRYOoLla83cKeSNy01/y+miUmB3EksHGv8Y/a29i0qBI4RgI1h7C/IJ+lt7F5UC5xzBbrX2FuQT9Lf2LiqF+BmMfwbHgWJ3cfw5CEvfJD8FcVdY3ixUTrDkXTzGe3Fd2P26qOww92uGmaM4YnWRKmfAM8VssTs5QlrfgxR1VpEq/5mzilS5AauLVLkRq4pUuSHHRb4WlvMHlRtDkS/F85FrojIJlUmoTEJlEiqTUJmEyiRUJqEyh2H3Cz4WH1fC57RBAAAAAElFTkSuQmCC);
-  background-repeat: no-repeat;
-  font-family: "Segoe UI";
-  font-size: 15px;
-  color: transparent;
-  overflow: hidden;
-
-  .&:focus {
-    width: 200px;
-    cursor: text;
-    padding-left: 40px;
-    color: #a0a0a0;
-  }
-
-  &:hover,
-  &:focus {
-    background-color: #ffffff;
-    background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACgAAAAoCAYAAACM/rhtAAAABHNCSVQICAgIfAhkiAAAAAlwSFlzAAAN1wAADdcBQiibeAAAABl0RVh0U29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuPBoAAAJTSURBVFiF7ZdNSxtRFIafM5PgJGqXxXy4DIziJhBdFLrwnyi4cym40S4ClkJ/g2B/Qv+BC0s3CtkIDWYZasWtXxEzebswQxGt3sk0Nou8cHfnPTycc+fOOSaJUZb3vwFe0hgwrcaAaTUGTKuRB8wMYrLZ2dxEd3rVPC2aqAoqBi0ZDfXs8DZzsad2++ZfAFrSP0m+NPdO4gtQeSasZcbK9c8f39PAQcIW50vzmxIHQEXQkGzdU2+pc6c3nnpLkq0LGkBF4iBfmt9MC+hcwX7lDgBhfOycTu5IR3ePElotGxSvthFbgJnxPlUlJb14KJdzQSE8CQqhgmJYd/EExbAeFEIFhfCEcjnn4nnqOLV4oju9Sr+tndPJHRdP53RyJ2533z+QnADN0yIAst2n2vqUpKM7ZLsP/EMDFFUAn+gwSfI4PvYPIidA9Z+U6641kySP4/X8k/Ss3CoILYB8RmGS5HF87B9EbhU0GgARfqK7FMfH/kHkBtiz+7tnWjOrZV08ZrUsprUH/mEB3mYu9oCWQTUoXm27eILi1bZBFWj1/cMDVLt9Y8YK0ENs5Upz9b9V0qyWzZXm6ogPAF6PjTSDQ6Jh4f5frE+AJ2gg2/WJDq+71sxnFEb4i5jW+pWL1fS7/vLl+fHZ0AHvId2mGa/HRs/jMxCmgUwMCO7z4NTbhZkoE+2ngRwIMInSQg595L88Pz7zu/4y0ATCKBPtT71dmHH1v8pOkgby1ZamR5DZ6KuL71W3uj+Q9k3SLxfP0D+StBr5vXgMmFZjwLQaA6bVyAP+BkJqfmMbSKF/AAAAAElFTkSuQmCC);
-  }
 `;

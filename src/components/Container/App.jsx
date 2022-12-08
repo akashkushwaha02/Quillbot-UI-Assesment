@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useMemo } from "react";
-import { Container, MainContentArea } from "./App.styles";
+import { Container, MainContentArea } from "../../styles/App.styles";
 import SideMenuComp from "../SidePanel/SideMenuComp";
 import HeaderComp from "../Header/HeaderComp";
 import ParentComp from "../MainSection/ParentComp";
@@ -40,8 +40,8 @@ const App = () => {
   };
   return (
     <Container>
-      <SideMenuComp onChangeMenu={handleOnClickMenu} />
-      <MainContentArea>
+      <SideMenuComp extendNav={extendNav} onChangeMenu={handleOnClickMenu} />
+      <MainContentArea extendNav={extendNav}>
         <HeaderComp
           onChange={handleChange}
           onClear={onClear}
