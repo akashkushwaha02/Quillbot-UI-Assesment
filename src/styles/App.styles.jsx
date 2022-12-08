@@ -12,6 +12,7 @@ export const SidePanel = styled.div`
 
   width: 275px;
   @media (max-width: 420px) {
+    //display: none;
     display: ${(props) => (props.closeMenu ? "block" : "none")};
     width: 100%;
   }
@@ -95,6 +96,7 @@ export const SearchBarInput = styled.input`
 
   font-size: 21px;
   line-height: 44px;
+  /* identical to box height, or 210% */
 
   color: #ffffff;
 
@@ -130,6 +132,7 @@ export const NoResultFound = styled.div`
   font-weight: 600;
   font-size: 21px;
   line-height: 44px;
+  /* identical to box height, or 210% */
 
   color: #ffffff;
 `;

@@ -7,6 +7,6 @@ This Project is created using NextJS, ReactJs and styled component
 ## Features
 
 - Responsive(mobile and web)
-- responsive menu working
+- Working responsive menu
 - Working Search functionality and it's clear functionality
 - Card module working according to it's screen size
